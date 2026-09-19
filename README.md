@@ -1,0 +1,2 @@
+# zdesign
+zdesign site public
