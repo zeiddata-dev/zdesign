@@ -1,0 +1,10 @@
+/* TromPloy type and color layer, loaded after the theme stylesheet. */
+@font-face{font-family:"ABCFavorit-Bold-Trial";src:url(space-grotesk-latin-06408904.woff2) format("woff2");font-weight:300 700;font-display:swap}
+@font-face{font-family:"WT Kormelink Roman";src:url(crimson-pro-latin-20ce4189.woff2) format("woff2");font-weight:200 900;font-display:swap}
+@font-face{font-family:"WT Kormelink Italic";src:url(crimson-pro-italic-latin-b3faa8f9.woff2) format("woff2");font-weight:200 900;font-display:swap}
+.agency__label h3,.agency__label h5,.contact,.curation__footer strong,.curation__headline,.header__container,.heading,.media-intro__text,.media-nav-search__button,.media-nav-search__input,.media-nav-search__input.placeholder,.media-nav-search__input:-moz-placeholder,.media-nav-search__input:-ms-input-placeholder,.media-nav-search__input::-moz-placeholder,.media-nav-search__input::-webkit-input-placeholder,.media-nav__taxonomy sup,.media.is-zoom .media-article__categories,.projects__group__title strong,.projects__label__text,.services__brands__categories,.services__brands__content,.services__services__group__heading sup,.services__services__group__list__item,form input[type=submit]{font-weight:700;letter-spacing:-.01em}
+:root{--zd-accent:#d76233}
+::selection{background:var(--zd-accent);color:#0c0e12}
+.services__services__group__heading sup,.projects__label__text span,.media-section__header h3 em,.contact__infos em{color:var(--zd-accent)}
+.zd-mark{display:block;font-family:"ABCFavorit-Bold-Trial",sans-serif;font-weight:700;line-height:1;text-transform:none;letter-spacing:-.02em}
+.zd-mark b{color:var(--zd-accent);font-weight:inherit}
