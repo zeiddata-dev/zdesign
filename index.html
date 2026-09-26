@@ -37,11 +37,12 @@
 .contact__credits{max-width:640px;margin:28px auto 0;font-size:10px;line-height:1.5;opacity:.55;text-transform:none}
 .contact__credits a{color:inherit}
 /* make-it-clear: scene slides in from the left, figures from the right, meet in the holes, then lift out */
-.cur-stage{position:relative;width:min(426px,42vw);aspect-ratio:648/1024}
+.cur-stage{position:relative;width:min(380px,36vw);aspect-ratio:648/1024}
 .cur-scene{display:block;width:100%;height:100%;object-fit:cover}
-.cur-fig{position:absolute;height:auto;will-change:transform;pointer-events:none}
+.cur-fig{position:absolute;height:auto;will-change:transform,opacity;pointer-events:none;backface-visibility:hidden}
 .cur-fig--man{left:38.426%;top:9.180%;width:42.901%;height:auto;bottom:auto}
 .cur-fig--dog{left:10.957%;top:58.301%;width:34.568%;height:auto;bottom:auto}
+.cur-fig--up{opacity:0}
 .curation__image--back{z-index:1}.curation__image--front{z-index:2}
 .projects__group{display:none!important}
 /* Engineer phase: live code from the GitHub repos, parallax, dissolves on scroll */
@@ -68,6 +69,48 @@
 .agency__code__pane--2{right:6vw;left:auto;top:46vh}
 .agency__code__pane--3{right:6vw;left:auto;top:86vh}
 .agency__services__texts{z-index:6;width:30em;transform:translateX(-15em);overflow:visible;pointer-events:none}
+.agency__services__text--1{opacity:1!important}.agency__services__text--2,.agency__services__text--3{display:none!important}
+/* Toolkit ledger: icon rows that expand to a proof line, video background tinted by group */
+.tk-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;filter:brightness(.55) saturate(.9)}
+.tk-scrim{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,.25) 45%,rgba(0,0,0,.2) 100%);pointer-events:none}
+.tk-tint{position:absolute;inset:0;mix-blend-mode:color;opacity:0;background:#6f8fb8;transition:opacity .6s ease,background .6s ease;pointer-events:none}
+.services-background[data-tk="1"] .tk-tint{opacity:.32;background:#5f86c4}
+.services-background[data-tk="2"] .tk-tint{opacity:.32;background:#c4483a}
+.services-background[data-tk="3"] .tk-tint{opacity:.32;background:#d7a45a}
+.services__services__group__list{max-width:440px}
+.tk-row{position:relative;outline:0;cursor:default}
+.services__services__group__heading span{display:inline-block;transform-origin:35% 50%;will-change:transform,opacity}
+.tk-ico{display:inline-block;vertical-align:middle;width:2.8em;height:2.8em;margin-right:.9em;border-radius:50%;background:#fff;color:#121212;padding:.6em;box-sizing:border-box;transition:transform .35s ease,background .35s ease,color .35s ease}
+.tk-ico svg{display:block;width:100%;height:100%}
+.tk-row:hover .tk-ico,.tk-row:focus .tk-ico,.tk-row.is-open .tk-ico{background:var(--zd-accent);color:#0c0e12;transform:rotate(-8deg) scale(1.08)}
+.tk-row>span:not(.tk-proof){vertical-align:middle}
+.tk-proof{display:block;max-height:0;overflow:hidden;opacity:0;padding-left:3.7em;font-size:.72em;line-height:1.55;letter-spacing:0;text-transform:none;font-weight:400;color:rgba(255,255,255,.78);transition:max-height .5s ease,opacity .4s ease,padding .4s ease}
+.tk-row:hover .tk-proof,.tk-row:focus .tk-proof,.tk-row.is-open .tk-proof{max-height:6em;opacity:1;padding-top:.3em;padding-bottom:.4em}
+/* Make It Clear: words live outside the picture, headline stays on top */
+.curation__content{min-height:100svh;display:block;margin-top:0;padding-top:0;padding-bottom:0}
+.curation__headline{position:absolute;left:0;right:0;top:5vh;z-index:6;max-width:none;margin:0;font-size:clamp(44px,7vw,104px);line-height:.9;letter-spacing:-.02em;color:#111;pointer-events:none}
+.curation__text{position:absolute;top:30vh;width:26vw;z-index:6;font-size:clamp(13px,1.25vw,20px);line-height:1.35;color:#111;pointer-events:none}
+.curation__text--1{left:6vw;text-align:left}
+.curation__text--2{right:6vw;text-align:right}
+.curation__text p{margin-bottom:1.6em}
+.curation__footer{position:absolute;left:0;right:0;bottom:3vh;z-index:6;color:#111;pointer-events:none}
+.curation__footer strong{font-size:clamp(22px,3vw,44px);letter-spacing:.04em}
+.curation__image{top:22vh!important}
+@media all and (max-width:1024px){.curation__text{position:static;width:auto;text-align:center;margin:0 auto 1em}.curation__footer{position:static;margin-top:2em}}
+/* Art field below the hands: random sizes, scroll-driven parallax, diagonal drift, zoom */
+.agency__image--3,.agency__image--4,.agency__image--5,.agency__image--6{display:none!important}
+.agency__field{position:relative;clear:both;width:100%;height:225vh;margin-top:10vh;z-index:2;overflow:visible}
+.fld{position:absolute;margin:0;overflow:hidden;background:#161616;will-change:transform,opacity;box-shadow:0 30px 60px rgba(0,0,0,.45);transform-origin:50% 50%;backface-visibility:hidden}
+.fld img{image-rendering:auto}
+.fld img{display:block;width:100%;height:100%;object-fit:cover;filter:brightness(calc(.6 + var(--d,.5)*.45)) saturate(.92);transition:filter .4s ease}
+.fld:hover img{filter:brightness(1.05) saturate(1)}
+@media all and (max-width:1024px){.agency__field{height:auto;display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 6vw}.fld{position:static!important;width:auto!important;transform:none!important}}
+.media-section{overflow:hidden;background:#fff}
+.media-section:after{display:none}
+.media-section__video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;transform-origin:50% 50%;transform:scale(1);filter:brightness(1) saturate(.8);will-change:transform,filter}
+.media-section__scrim{position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 58% 52% at 50% 48%,rgba(255,255,255,0) 0%,rgba(255,255,255,.55) 55%,rgba(255,255,255,.97) 100%)}
+.media-section__header{color:#121212}
+.media-section__content{position:relative;z-index:1}
 .agency__code__pane--4{left:6vw;top:86vh}
 .agency__code__pane figcaption{display:flex;justify-content:space-between;gap:12px;padding:8px 12px;font-size:10px;letter-spacing:.06em;color:rgba(255,255,255,.55);border:0}
 .agency__code__pane pre{margin:0;padding:12px 14px 14px;font-size:11.5px;line-height:1.55;white-space:pre;overflow:hidden;max-height:34vh}
@@ -349,6 +392,25 @@ def check(target: str, default_port: int, timeout: float) -&gt; CertResult:
                         <a class="agency__code__gh" href="https://github.com/zeiddata-dev" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="6" cy="4.5" r="2.2"/><circle cx="6" cy="19.5" r="2.2"/><circle cx="18" cy="8" r="2.2"/><path d="M6 6.7v10.6M18 10.2c0 3.6-3 4.6-6 5.3-2.6.6-5 1.2-6 3.4"/></svg><span>github.com/zeiddata-dev</span></a>
                     </div>
                 </div>
+                <div class="agency__field js-agency-field" aria-label="Art in progress">
+                    <figure class="fld" style="left:5vw;top:3vh;width:14vw;aspect-ratio:0.806;--d:0.55" data-d="0.55" data-sx="-0.1" data-sy="0.07"><img src="img/field-01.jpg" alt="Impasto oil paint, cobalt and bone white" loading="lazy" decoding="async"></figure>
+                    <figure class="fld" style="left:40vw;top:10vh;width:20vw;aspect-ratio:1.49;--d:0.35" data-d="0.35" data-sx="0.85" data-sy="-0.04"><img src="img/field-03.jpg" alt="Sumi-e ink drawing on rice paper" loading="lazy" decoding="async"></figure>
+                    <figure class="fld" style="left:80vw;top:6vh;width:9vw;aspect-ratio:0.671;--d:0.85" data-d="0.85" data-sx="0.02" data-sy="0.1"><img src="img/field-06.jpg" alt="Hand-woven indigo and ochre textile" loading="lazy" decoding="async"></figure>
+                    <figure class="fld" style="left:24vw;top:38vh;width:11vw;aspect-ratio:0.747;--d:0.25" data-d="0.25" data-sx="-0.63" data-sy="0.01"><img src="img/field-02.jpg" alt="Bronze figure fragment in a stone gallery" loading="lazy" decoding="async"></figure>
+                    <figure class="fld" style="left:54vw;top:42vh;width:28vw;aspect-ratio:1.79;--d:0.7" data-d="0.7" data-sx="0.26" data-sy="0.35"><img src="img/field-04.jpg" alt="Abstract mural on a concrete wall" loading="lazy" decoding="async"></figure>
+                    <figure class="fld" style="left:6vw;top:58vh;width:10vw;aspect-ratio:1.0;--d:0.95" data-d="0.95" data-sx="-0.81" data-sy="-0.24"><img src="img/field-12.jpg" alt="Watercolor pigment blooming into wet paper" loading="lazy" decoding="async"></figure>
+                    <figure class="fld" style="left:36vw;top:66vh;width:13vw;aspect-ratio:1.0;--d:0.45" data-d="0.45" data-sx="-0.82" data-sy="0.37"><img src="img/field-05.jpg" alt="Stoneware on a potter's wheel" loading="lazy" decoding="async"></figure>
+                    <figure class="fld" style="left:88vw;top:70vh;width:8vw;aspect-ratio:0.671;--d:0.2" data-d="0.2" data-sx="0.39" data-sy="-0.55"><img src="img/field-13.jpg" alt="Charcoal figure study pinned to a wall" loading="lazy" decoding="async"></figure>
+                    <figure class="fld" style="left:8vw;top:90vh;width:24vw;aspect-ratio:1.79;--d:0.6" data-d="0.6" data-sx="0.96" data-sy="0.56"><img src="img/field-11.jpg" alt="Marble sculptor's studio floor" loading="lazy" decoding="async"></figure>
+                    <figure class="fld" style="left:60vw;top:96vh;width:15vw;aspect-ratio:1.34;--d:0.3" data-d="0.3" data-sx="0.31" data-sy="0.14"><img src="img/field-07.jpg" alt="Letterpress print drying on a line" loading="lazy" decoding="async"></figure>
+                    <figure class="fld" style="left:78vw;top:112vh;width:18vw;aspect-ratio:1.24;--d:0.8" data-d="0.8" data-sx="-0.69" data-sy="-0.58"><img src="img/field-16.jpg" alt="Mosaic in progress on a floor" loading="lazy" decoding="async"></figure>
+                    <figure class="fld" style="left:30vw;top:124vh;width:12vw;aspect-ratio:1.24;--d:0.5" data-d="0.5" data-sx="0.06" data-sy="-0.53"><img src="img/field-08.jpg" alt="Silver gelatin print in a developer tray" loading="lazy" decoding="async"></figure>
+                    <figure class="fld" style="left:2vw;top:140vh;width:22vw;aspect-ratio:1.34;--d:0.9" data-d="0.9" data-sx="-0.62" data-sy="-0.31"><img src="img/field-14.jpg" alt="Neon tube bent over a ribbon burner" loading="lazy" decoding="async"></figure>
+                    <figure class="fld" style="left:56vw;top:146vh;width:9vw;aspect-ratio:0.558;--d:0.15" data-d="0.15" data-sx="-0.94" data-sy="-0.04"><img src="img/field-17.jpg" alt="Iron scroll hammered on an anvil" loading="lazy" decoding="async"></figure>
+                    <figure class="fld" style="left:70vw;top:166vh;width:17vw;aspect-ratio:1.49;--d:0.4" data-d="0.4" data-sx="-0.12" data-sy="0.41"><img src="img/field-15.jpg" alt="Screen-printing squeegee pulling silver ink" loading="lazy" decoding="async"></figure>
+                    <figure class="fld" style="left:18vw;top:180vh;width:10vw;aspect-ratio:0.558;--d:0.65" data-d="0.65" data-sx="0.04" data-sy="0.17"><img src="img/field-09.jpg" alt="Plaster casts on studio shelves" loading="lazy" decoding="async"></figure>
+                    <figure class="fld" style="left:42vw;top:196vh;width:14vw;aspect-ratio:0.806;--d:0.75" data-d="0.75" data-sx="-0.0" data-sy="0.19"><img src="img/field-18.jpg" alt="Woodcut block being inked" loading="lazy" decoding="async"></figure>
+                </div>
                             <div class="agency__image agency__image--2 js-agency-image">
                     <div style="padding-bottom: 148.8%" class="agency__image__container js-agency-image-container">
                         <img class="js-lazy-image" data-src="img/eng-poster.jpg" alt="">
@@ -401,7 +463,7 @@ and motion<br />
 for one goal</p>
         </div>
         <h2 class="curation__headline">
-            <span>make it clear</span>
+            <span>cut to the point</span>
         </h2>
         <div class="curation__text curation__text--2">
             <p>your<br />
@@ -418,7 +480,7 @@ designed.</p>
         </div>
 
         <div class="curation__image curation__image--front js-curation-image-front">
-            <div class="cur-stage"><img class="cur-fig cur-fig--man js-cut-man" src="img/cut-man.png" alt=""><img class="cur-fig cur-fig--dog js-cut-dog" src="img/cut-dog.png" alt=""></div>
+            <div class="cur-stage"><img class="cur-fig cur-fig--man js-cut-man" src="img/cut-man.png" alt=""><img class="cur-fig cur-fig--man cur-fig--up js-cut-man2" src="img/cut-man-up.png" alt=""><img class="cur-fig cur-fig--dog js-cut-dog" src="img/cut-dog.png" alt=""><img class="cur-fig cur-fig--dog cur-fig--up js-cut-dog2" src="img/cut-dog-up.png" alt=""></div>
         </div>
         <div class="curation__image curation__image--back js-curation-image-back">
             <div class="cur-stage"><img class="cur-scene" src="img/cut-scene.jpg" alt="Studio scene with two cut-out silhouettes"></div>
@@ -754,7 +816,10 @@ Static sites, React apps, pipelines, and automation, shipped with validation and
                     };
                 </script>
                             <div class="services-background js-services-bg">
-            <img alt="TromPloy" src="img/wide-02.jpg" class="services-background__image js-services-bg">
+            <img alt="" src="img/tk3-poster.jpg" class="services-background__image js-services-bg">
+            <video class="tk-video js-tk-video" autoplay muted loop playsinline preload="metadata" poster="img/tk3-poster.jpg" aria-hidden="true"><source src="img/tk3-loop.webm" type="video/webm"><source src="img/tk3-loop.mp4" type="video/mp4"></video>
+            <div class="tk-scrim" aria-hidden="true"></div>
+            <div class="tk-tint" aria-hidden="true"></div>
             <div class="services__brands__header js-brands-header">
                 <h3 class="services__brands__heading">
                     <span>
@@ -854,20 +919,25 @@ Static sites, React apps, pipelines, and automation, shipped with validation and
 </h3>
 <div class="services__services__group__list-container">
 <ul class="services__services__group__list">
-<li class="services__services__group__list__item">
-<em>DP</em><span>Data Pipelines</span>
+<li class="services__services__group__list__item tk-row" tabindex="0">
+<i class="tk-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h5l3 6 3-6h7M3 18h5l3-6 3 6h7"/></svg></i><span>Data Pipelines</span>
+<span class="tk-proof">Scheduled Python jobs that pull call, ad and web data into one store for a DFW clinic. No hand exports, no Monday spreadsheet.</span>
 </li>
-<li class="services__services__group__list__item">
-<em>ED</em><span>Evidence Dashboards</span>
+<li class="services__services__group__list__item tk-row" tabindex="0">
+<i class="tk-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg></i><span>Evidence Dashboards</span>
+<span class="tk-proof">Client reports hosted at reports.zeiddata.com, one page per client, built from the raw numbers rather than screenshots.</span>
 </li>
-<li class="services__services__group__list__item">
-<em>PA</em><span>Parsing &amp; Normalizing</span>
+<li class="services__services__group__list__item tk-row" tabindex="0">
+<i class="tk-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4H5v16h3M16 4h3v16h-3M10 12h4"/></svg></i><span>Parsing &amp; Normalizing</span>
+<span class="tk-proof">Call transcripts and ad exports parsed into one schema, so a missed call and a wasted click land in the same table.</span>
 </li>
-<li class="services__services__group__list__item">
-<em>RP</em><span>Reporting</span>
+<li class="services__services__group__list__item tk-row" tabindex="0">
+<i class="tk-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6zM15 3v4h4M9 12h6M9 16h6"/></svg></i><span>Reporting</span>
+<span class="tk-proof">Weekly write-ups where every figure traces back to a source row, or says plainly that the evidence is missing.</span>
 </li>
-<li class="services__services__group__list__item">
-<em>AU</em><span>Automation</span>
+<li class="services__services__group__list__item tk-row" tabindex="0">
+<i class="tk-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9M12 3v4M21 12h-4"/><path d="M15 6l3-3M18 6V3h-3"/></svg></i><span>Automation</span>
+<span class="tk-proof">Backup verification, DNS audits, TLS expiry checks and route snapshots, all open source in zeiddata-dev/Research.</span>
 </li>
 </ul>
 </div>
@@ -878,20 +948,25 @@ Static sites, React apps, pipelines, and automation, shipped with validation and
 </h3>
 <div class="services__services__group__list-container">
 <ul class="services__services__group__list">
-<li class="services__services__group__list__item">
-<em>DE</em><span>Detection Engineering</span>
+<li class="services__services__group__list__item tk-row" tabindex="0">
+<i class="tk-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="7"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="1.5"/></svg></i><span>Detection Engineering</span>
+<span class="tk-proof">Sigma rules for new behavior, like an AI coding agent spawning a shell, with KQL and SPL ports for whatever SIEM you run.</span>
 </li>
-<li class="services__services__group__list__item">
-<em>LA</em><span>Log Analysis</span>
+<li class="services__services__group__list__item tk-row" tabindex="0">
+<i class="tk-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h12M4 9h12M4 13h7M4 17h5"/><circle cx="17" cy="16" r="3"/><path d="M19.5 18.5 22 21"/></svg></i><span>Log Analysis</span>
+<span class="tk-proof">Principal-level SIEM engineering across retail, petroleum and QSR. Reading logs is the job, the dashboard is the byproduct.</span>
 </li>
-<li class="services__services__group__list__item">
-<em>NA</em><span>Network Audits</span>
+<li class="services__services__group__list__item tk-row" tabindex="0">
+<i class="tk-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M7 6h10M6.5 7.5 11 16M17.5 7.5 13 16"/></svg></i><span>Network Audits</span>
+<span class="tk-proof">DNS and route audits, host reachability sweeps, and a bare-metal Pi-hole box built for home-network visibility.</span>
 </li>
-<li class="services__services__group__list__item">
-<em>HD</em><span>Hardening</span>
+<li class="services__services__group__list__item tk-row" tabindex="0">
+<i class="tk-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></i><span>Hardening</span>
+<span class="tk-proof">Firewall, DNS, VPN and segmentation reviews with the fixes delivered as runnable scripts, not a slide deck.</span>
 </li>
-<li class="services__services__group__list__item">
-<em>SH</em><span>Self-hosted AI</span>
+<li class="services__services__group__list__item tk-row" tabindex="0">
+<i class="tk-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"/></svg></i><span>Self-hosted AI</span>
+<span class="tk-proof">A local LLM router that keeps sensitive client data off remote models, plus a self-hosted model on AWS for defensive research.</span>
 </li>
 </ul>
 </div>
@@ -902,29 +977,37 @@ Static sites, React apps, pipelines, and automation, shipped with validation and
 </h3>
 <div class="services__services__group__list-container">
 <ul class="services__services__group__list">
-<li class="services__services__group__list__item">
-<em>BI</em><span>Brand Identity</span>
+<li class="services__services__group__list__item tk-row" tabindex="0">
+<i class="tk-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 6v12M6 12h12" /><circle cx="12" cy="12" r="2.5"/></svg></i><span>Brand Identity</span>
+<span class="tk-proof">A white-label brand system for a Dallas print shop: colors, type, voice, and a social template set that runs itself.</span>
 </li>
-<li class="services__services__group__list__item">
-<em>WD</em><span>Web Design</span>
+<li class="services__services__group__list__item tk-row" tabindex="0">
+<i class="tk-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg></i><span>Web Design</span>
+<span class="tk-proof">This site. Started on a theme, then rebuilt section by section until it stopped looking like one.</span>
 </li>
-<li class="services__services__group__list__item">
-<em>SS</em><span>Static Sites</span>
+<li class="services__services__group__list__item tk-row" tabindex="0">
+<i class="tk-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg></i><span>Static Sites</span>
+<span class="tk-proof">Portfolio and booking sites on Netlify with no build step. Open index.html and it runs.</span>
 </li>
-<li class="services__services__group__list__item">
-<em>RA</em><span>React Apps</span>
+<li class="services__services__group__list__item tk-row" tabindex="0">
+<i class="tk-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="12" rx="9" ry="3.5"/><ellipse cx="12" cy="12" rx="9" ry="3.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="3.5" transform="rotate(120 12 12)"/></svg></i><span>React Apps</span>
+<span class="tk-proof">zeiddata.com rebuilt in React, Vite and Tailwind, deployed on Netlify.</span>
 </li>
-<li class="services__services__group__list__item">
-<em>MO</em><span>Motion &amp; Video</span>
+<li class="services__services__group__list__item tk-row" tabindex="0">
+<i class="tk-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9l5 3-5 3z"/></svg></i><span>Motion &amp; Video</span>
+<span class="tk-proof">Loops cut, slowed and frame-interpolated by hand so they never stutter, like the ones on this page.</span>
 </li>
-<li class="services__services__group__list__item">
-<em>PC</em><span>Print Collateral</span>
+<li class="services__services__group__list__item tk-row" tabindex="0">
+<i class="tk-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8V3h10v5M7 17H4v-6h16v6h-3M7 14h10v7H7z"/></svg></i><span>Print Collateral</span>
+<span class="tk-proof">Album covers and print-ready collateral, photography and generated imagery blended until the seam is gone.</span>
 </li>
 </ul>
 </div>
 </div>
 </div>
 </section>  <section class="media-section js-media-section">
+  <video class="media-section__video" autoplay muted loop playsinline preload="metadata" poster="img/tk2-poster.jpg" aria-hidden="true"><source src="img/tk2-loop.webm" type="video/webm"><source src="img/tk2-loop.mp4" type="video/mp4"></video>
+  <div class="media-section__scrim" aria-hidden="true"></div>
   <div id="media" class="media-section__content js-media-section-content">
     <a target="_blank" class="media-section__link js-cursor-follower-trigger" rel="noopener" href="https://zeiddata.com"></a>
     <div class="media-section__header heading js-media-section-header">
@@ -984,7 +1067,6 @@ Evidence first, then craft.</p>
 <a href="mailto:radwuan@zeiddata.com"><em>(</em>Start a project<em>)</em></a>
 </p>
 </div>
-<p class="contact__credits">Photography via Wikimedia Commons: <a href="https://commons.wikimedia.org/wiki/File:Lissajous-Figur_--_2020_--_7766.jpg" target="_blank" rel="noopener">Lissajous-Figur -- 2020 -- 7766</a>, Dietmar Rabich, CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Moving_Water_and_Ink_(Unsplash).jpg" target="_blank" rel="noopener">Moving Water and Ink (Unsplash)</a>, Adrien Ledoux adrienl, CC0 · <a href="https://commons.wikimedia.org/wiki/File:Light_painting_diwali.jpg" target="_blank" rel="noopener">Light painting diwali</a>, Nikhilb239, CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:D%C3%BClmen,_M%C3%BCnsterstra%C3%9Fe,_Viktorkirmes,_Riesenrad_--_2023_--_9053_(kreativ).jpg" target="_blank" rel="noopener">Dülmen, Münsterstraße, Viktorkirmes, Riesenrad -- 2023 -- 9053 (kreativ)</a>, Dietmar Rabich, CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Wood_letterpress_type.jpg" target="_blank" rel="noopener">Wood letterpress type</a>, Michellecornelison, CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Kerze_--_2021_--_5487.jpg" target="_blank" rel="noopener">Kerze -- 2021 -- 5487</a>, Dietmar Rabich, CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Streichholz_--_2021_--_6257.jpg" target="_blank" rel="noopener">Streichholz -- 2021 -- 6257</a>, Dietmar Rabich, CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Dichroitisches_Prisma_--_2020_--_5123.jpg" target="_blank" rel="noopener">Dichroitisches Prisma -- 2020 -- 5123</a>, Dietmar Rabich, CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Glaskugel_--_2022_--_9846.jpg" target="_blank" rel="noopener">Glaskugel -- 2022 -- 9846</a>, Dietmar Rabich, CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Cadmium_red_pale_oil_paint_1.jpg" target="_blank" rel="noopener">Cadmium red pale oil paint 1</a>, W.carter, CC BY 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Abstrakte_Fotografie_002_2015_03_14.jpg" target="_blank" rel="noopener">Abstrakte Fotografie 002 2015 03 14</a>, Friedrich Haag, CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Haltern_am_See,_Lavesum,_K%C3%BCnstlerhof,_Acrylfarbe_--_2021_--_5727.jpg" target="_blank" rel="noopener">Haltern am See, Lavesum, Künstlerhof, Acrylfarbe -- 2021 -- 5727</a>, Dietmar Rabich, CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Type_case_with_movable_types_for_letterpress_printing_in_the_Gutenberg_Museum,_Mainz,_Germany_(48988492232).jpg" target="_blank" rel="noopener">Type case with movable types for letterpress printing in the Gutenberg Museum, Mainz, Germany (48988492232)</a>, dronepicr, CC BY 2.0 · <a href="https://commons.wikimedia.org/wiki/File:Silver_ring_splashed_with_white_paint_and_a_paint_brush_by_ASQ.jpg" target="_blank" rel="noopener">Silver ring splashed with white paint and a paint brush by ASQ</a>, W.carter, CC BY 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Lissajous-Figur_--_2020_--_7765.jpg" target="_blank" rel="noopener">Lissajous-Figur -- 2020 -- 7765</a>, Dietmar Rabich, CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:2014-06-29_Mannequin_with_bunny_head_in_Harajuku.jpg" target="_blank" rel="noopener">2014-06-29 Mannequin with bunny head in Harajuku</a>, Scott Edmunds, CC BY 2.0 · <a href="https://commons.wikimedia.org/wiki/File:Late_Valentines_-_Flickr_-_Brian_Tomlinson_Photography.jpg" target="_blank" rel="noopener">Late Valentines - Flickr - Brian Tomlinson Photography</a>, Brian Tomlinson from Milton Keynes, UK, CC BY 2.0 · <a href="https://commons.wikimedia.org/wiki/File:Carnival_in_Venice,_February_1987_11.jpg" target="_blank" rel="noopener">Carnival in Venice, February 1987 11</a>, L&#x27;Ospite Inatteso, CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:-Arrangement_of_12_Female_Mannequin_Heads,_Each_with_Distinct_Physiognomy_and_Period_Hair_Style-_MET_DP106354.jpg" target="_blank" rel="noopener">-Arrangement of 12 Female Mannequin Heads, Each with Distinct Physiognomy and Period Hair Style- MET DP106354</a>, Creator:Pet, CC0 · <a href="https://commons.wikimedia.org/wiki/File:Mannequin_wigs.jpg" target="_blank" rel="noopener">Mannequin wigs</a>, Dslcards, CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Disembodied_Doll_Heads.jpg" target="_blank" rel="noopener">Disembodied Doll Heads</a>, Corey Leopold, CC BY 2.0 · <a href="https://commons.wikimedia.org/wiki/File:Carnival_of_venice_2020_onderkokturk_10.jpg" target="_blank" rel="noopener">Carnival of venice 2020 onderkokturk 10</a>, Onderkokturk, CC BY-SA 4.0</p>
 <!-- <div class="contact__bg js-contact-bg"></div> -->
 </section>  
 <section class="intro intro--outro js-outro">
@@ -1028,14 +1110,41 @@ Evidence first, then craft.</p>
 <script src="assets/main.js"></script>
 <script>
 (function(){
-  var back=document.querySelector('.js-curation-image-back'), man=document.querySelector('.js-cut-man'), dog=document.querySelector('.js-cut-dog'); if(!back) return;
+  var sec=document.querySelector('.js-media-section'); if(!sec) return;
+  var vid=sec.querySelector('.media-section__video'), scrim=sec.querySelector('.media-section__scrim'), head=sec.querySelector('.media-section__header'), cur=-1;
+  function mix(a,b,t){return Math.round(a+(b-a)*t)}
+  function tick(){
+    var r=sec.getBoundingClientRect(), h=innerHeight;
+    var p=Math.min(1,Math.max(0,(h*0.7-r.top)/(r.height*0.9)));       // 0 at the top of the section, 1 near the bottom
+    p=p*p*(3-2*p);
+    if(Math.abs(p-cur)>0.002){ cur=p;
+      var g=mix(255,18,p), c=g+','+g+','+g;                            // white at the start, near black at the end
+      sec.style.background='rgb('+c+')';
+      vid.style.transform='scale('+(1+0.4*p).toFixed(3)+')';
+      vid.style.filter='brightness('+(1-0.6*p).toFixed(3)+') saturate(.8)';
+      var mid=(0.55+0.15*p).toFixed(2), edge=(0.97-0.07*p).toFixed(2);
+      scrim.style.background='radial-gradient(ellipse '+(58-14*p).toFixed(0)+'% '+(52-12*p).toFixed(0)+'% at 50% 48%,rgba('+c+',0) 0%,rgba('+c+','+mid+') 55%,rgba('+c+','+edge+') 100%)';
+      if(head){ var t=mix(18,243,p); head.style.color='rgb('+t+','+t+','+t+')'; }
+    }
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+</script>
+<script>
+(function(){
+  var back=document.querySelector('.js-curation-image-back'), man=document.querySelector('.js-cut-man'), dog=document.querySelector('.js-cut-dog'), man2=document.querySelector('.js-cut-man2'), dog2=document.querySelector('.js-cut-dog2'); if(!back) return;
   var ease=function(t){return t<0.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2};
   function tick(){
     var m=getComputedStyle(back).transform, sc=1;
     if(m&&m!=='none'){var v=m.match(/matrix\(([^)]+)\)/); if(v){sc=parseFloat(v[1].split(',')[0])}}
     var t=ease(Math.min(1,Math.max(0,(1-sc)/0.7)));      // 0 at full size, 1 when the theme has shrunk it to .3
-    man.style.transform='translate('+(t*10)+'%,'+(-t*130)+'%)';
-    dog.style.transform='translate('+(-t*14)+'%,'+(-t*230)+'%)';
+    var mt='translate(0,'+(t*130)+'%)', dt='translate(0,'+(t*230)+'%)';
+    man.style.transform=mt; man2.style.transform=mt;
+    dog.style.transform=dt; dog2.style.transform=dt;
+    var look=Math.min(1,Math.max(0,(t-0.18)/0.32));       // heads turn once they have cleared the cutout holes
+    man.style.opacity=1-look; man2.style.opacity=look;
+    dog.style.opacity=1-look; dog2.style.opacity=look;
     requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
@@ -1168,5 +1277,54 @@ Evidence first, then craft.</p>
 </script>
 
 
+<script>
+(function(){
+  var bg=document.querySelector('.services-background'); if(!bg) return;
+  document.querySelectorAll('.services__services__group').forEach(function(g){
+    var h=g.querySelector('.services__services__group__heading'); var idx=h?h.dataset.index:'';
+    g.addEventListener('mouseenter',function(){bg.dataset.tk=idx});
+    g.addEventListener('mouseleave',function(){bg.dataset.tk=''});
+  });
+  var vid=document.querySelector('.js-tk-video');
+  function hold(){ if(vid&&!vid.paused) vid.pause(); }
+  function release(){ if(vid&&vid.paused&&!document.querySelector('.tk-row.is-open')) vid.play().catch(function(){}); }
+  document.querySelectorAll('.tk-row').forEach(function(r){
+    r.addEventListener('mouseenter',hold); r.addEventListener('mouseleave',release); r.addEventListener('focus',hold); r.addEventListener('blur',release);
+    r.addEventListener('click',function(){ var open=r.classList.contains('is-open'); document.querySelectorAll('.tk-row.is-open').forEach(function(o){o.classList.remove('is-open')}); if(!open){ r.classList.add('is-open'); hold(); } else release(); });
+  });
+})();
+</script>
+<script>
+(function(){
+  var field=document.querySelector('.js-agency-field'); if(!field) return;
+  var items=[].slice.call(field.querySelectorAll('.fld')).map(function(el){return {el:el,d:+el.dataset.d,sx:+el.dataset.sx,sy:+el.dataset.sy}});
+  var mq=window.matchMedia('(max-width:1024px)');
+  var tx=0, ty=0, mx=0, my=0;                                   // pointer, normalised -1..1 from the viewport centre, smoothed
+  window.addEventListener('pointermove',function(e){ tx=(e.clientX/window.innerWidth)*2-1; ty=(e.clientY/window.innerHeight)*2-1; },{passive:true});
+  document.addEventListener('mouseleave',function(){ tx=0; ty=0; });
+  function tick(){
+    if(!mq.matches){
+      mx+=(tx-mx)*0.05; my+=(ty-my)*0.05;
+      var fr=field.getBoundingClientRect(), h=window.innerHeight, w=window.innerWidth;
+      items.forEach(function(it){
+        var el=it.el, d=it.d;
+        var top=fr.top+el.offsetTop, ih=el.offsetHeight;
+        var u=Math.min(1,Math.max(0,(h-top)/(h+ih)));          // 0 as the piece enters at the bottom, 1 as it leaves the top
+        var sc=(0.72+0.28*d)+d*u*0.95;                          // near pieces swell toward the viewer, far ones barely change
+        var f=(d-0.5)*2;                                          // near pieces chase the pointer, far pieces run from it
+        var dirx=it.sx+mx*0.8, diry=-0.35+my*0.5;                   // the diagonal bends toward wherever the mouse is
+        var dy=-(d-0.4)*u*h*0.5+diry*u*120*d+f*my*140, dx=dirx*u*160*d+(0.5-d)*u*40+f*mx*180;
+        var op=Math.min(1,u*8);
+        if(sc>1.6) op=Math.min(op,Math.max(0,1-(sc-1.6)/0.35));
+        el.style.transform='translate3d('+dx.toFixed(1)+'px,'+dy.toFixed(1)+'px,0) scale('+sc.toFixed(3)+')';
+        el.style.opacity=op.toFixed(3);
+        el.style.zIndex=Math.round(d*100);
+      });
+    }
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+</script>
 <script src="assets/site.js"></script>
 </body></html>
